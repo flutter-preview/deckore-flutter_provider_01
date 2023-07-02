@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (context) => FishModel(name: 'Salmon', number: 10, size: 'big'),
       child: const MaterialApp(
         home: FishOrder(),
@@ -185,7 +185,15 @@ class End extends StatelessWidget {
           'Out of End',
           style: TextStyle(fontSize: 16),
         ),
-        SizedBox(),
+        SizedBox(
+          height: 20,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Provider.of<FishModel>(context, listen: false).changeFishNumber();
+          },
+          child: Text('Change Fish Number'),
+        )
       ],
     );
   }
